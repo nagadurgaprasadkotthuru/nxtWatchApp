@@ -14,7 +14,7 @@ export const Form = styled.form`
   box-shadow: 0px 4px 16px 0px #bfbfbf;
   border-radius: 10px;
   padding: 15px 30px 15px 30px;
-  width: 90%;
+  width: 320px;
   height: fit-content;
 `
 
@@ -33,21 +33,27 @@ export const DflexContainer = styled.div`
 export const Label = styled.label`
   font-family: 'Roboto';
   margin-bottom: ${props => (props.id === 'checkbox' ? '0px' : '5px')};
-  color: #475569;
+  color: ${props => (props.id === 'checkbox' ? '#181818' : '#616e7c')};
   font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
 `
 
 export const Input = styled.input`
   font-family: 'Roboto';
-  margin-bottom: 20px;
+  margin-bottom: ${props => (props.id === 'checkbox' ? '8px' : '15px')};
   height: 40px;
-  border-radius: 10px;
+  border-radius: 8px;
   padding-left: 10px;
-  border: 1px solid #475569;
-  color: #475569;
+  border: 1px solid #616e7c;
+  color: #616e7c;
   font-size: 16px;
   width: ${props => (props.id === 'checkbox' ? '20px' : '')};
   height: ${props => (props.id === 'checkbox' ? '20px' : '')};
+  margin-right: ${props => (props.id === 'checkbox' ? '6px' : '')};
+  cursor: ${props => props.id === 'checkbox' && 'pointer'};
+  outline: none;
 `
 
 export const Button = styled.button`
@@ -57,11 +63,15 @@ export const Button = styled.button`
   border-radius: 8px;
   padding: 10px 20px 10px 20px;
   background-color: #3b82f6;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
 `
 
 export const ErrorMsg = styled.p`
   font-family: 'Roboto';
   font-size: 12px;
-  color: #ffob37;
+  color: #ff0b37;
   margin: 0px;
+  margin-top: 3px;
 `
