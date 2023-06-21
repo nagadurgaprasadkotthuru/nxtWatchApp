@@ -12,17 +12,24 @@ import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {isShowBanner: true}
+  state = {isShowBanner: true, isShowNavigationItems: false}
 
   onClickIsShowBanner = () => this.setState({isShowBanner: false})
 
+  onClickIsShowNavigationItems = () =>
+    this.setState(prevState => ({
+      isShowNavigationItems: !prevState.isShowNavigationItems,
+    }))
+
   render() {
-    const {isShowBanner} = this.state
+    const {isShowBanner, isShowNavigationItems} = this.state
     return (
       <NxtContext.Provider
         value={{
           isShowBanner,
+          isShowNavigationItems,
           onClickIsShowBanner: this.onClickIsShowBanner,
+          onClickIsShowNavigationItems: this.onClickIsShowNavigationItems,
         }}
       >
         <Switch>
