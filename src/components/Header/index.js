@@ -46,7 +46,7 @@ const Header = props => {
               />
               <NavItemsContainer>
                 <NavItem>
-                  <TransparentButton>
+                  <TransparentButton data-testid="theme">
                     <FaMoon style={{padding: '0px', margin: '0px'}} />
                   </TransparentButton>
                 </NavItem>

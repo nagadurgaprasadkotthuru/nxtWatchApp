@@ -2,11 +2,14 @@ import {Component} from 'react'
 
 import Cookies from 'js-cookie'
 
+import Loader from 'react-loader-spinner'
+
 import {IoIosClose} from 'react-icons/io'
 import {AiOutlineSearch} from 'react-icons/ai'
 
 import Header from '../Header'
 import NxtContext from '../../context/NxtContext'
+import ThumbnailCard from '../ThumbnailCard'
 
 import {
   BgContainer,
@@ -19,6 +22,13 @@ import {
   OutlineButton,
   Input,
   SearchButton,
+  LoaderContainer,
+  FailureViewContainer,
+  Image,
+  Heading,
+  Description,
+  RetryButton,
+  VideosContainer,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -76,6 +86,53 @@ class Home extends Component {
 
   onChangeInput = event => this.setState({searchInput: event.target.value})
 
+  renderSuccessView = () => {
+    const {videosList} = this.state
+    return (
+      <>
+        {videosList.length > 0 ? (
+          <VideosContainer data-testid="loader">
+            {videosList.map(eachItem => (
+              <ThumbnailCard cardDetails={eachItem} key={eachItem.id} />
+            ))}
+          </VideosContainer>
+        ) : (
+          <FailureViewContainer>
+            <Image
+              alt="no videos"
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+            />
+            <Heading>No Search results found</Heading>
+            <Description>
+              Try different key words or remove search filter
+            </Description>
+            <RetryButton onClick={this.getVideosData}>Retry</RetryButton>
+          </FailureViewContainer>
+        )}
+      </>
+    )
+  }
+
+  renderFailureView = () => (
+    <FailureViewContainer>
+      <Image
+        alt="failure view"
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+      />
+      <Heading>Oops! Something Went Wrong</Heading>
+      <Description>
+        We are having some trouble to complete your request. Please try again.
+      </Description>
+      <RetryButton onClick={this.getVideosData}>Retry</RetryButton>
+    </FailureViewContainer>
+  )
+
+  renderLoadingView = () => (
+    <LoaderContainer>
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </LoaderContainer>
+  )
+
   renderSwitchView = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
@@ -100,7 +157,7 @@ class Home extends Component {
             <BgContainer data-testid="home">
               <Header />
               {isShowBanner && (
-                <PremiumBanner>
+                <PremiumBanner data-testid="banner">
                   <PremiumContainer>
                     <WebsiteLogo
                       alt="nxt watch logo"
@@ -126,10 +183,14 @@ class Home extends Component {
                   value={searchInput}
                   onChange={this.onChangeInput}
                 />
-                <SearchButton>
+                <SearchButton
+                  data-testid="searchButton"
+                  onClick={this.getVideosData}
+                >
                   <AiOutlineSearch />
                 </SearchButton>
               </TransparentContainer>
+              {this.renderSwitchView()}
             </BgContainer>
           )
         }}

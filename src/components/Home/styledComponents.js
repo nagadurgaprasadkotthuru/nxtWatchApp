@@ -72,6 +72,7 @@ export const Input = styled.input`
   border: 1px solid #909090;
   padding-left: 10px;
   font-weight: 400;
+  outline: none;
 `
 
 export const SearchButton = styled.button`
@@ -82,4 +83,55 @@ export const SearchButton = styled.button`
   width: 20%;
   height: 35px;
   font-size: 18px;
+`
+
+export const LoaderContainer = styled.div`
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const FailureViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`
+
+export const Image = styled.img`
+  width: 250px;
+`
+
+export const Heading = styled.h1`
+  font-family: 'Roboto';
+  text-align: center;
+  font-size: 18px;
+  margin: 6px 0px 6px 0px;
+`
+
+export const Description = styled.p`
+  font-family: 'Roboto';
+  text-align: center;
+  font-size: 16px;
+  margin: 6px 0px 6px 0px;
+`
+
+export const RetryButton = styled.button`
+  background-color: #4f46e5;
+  color: #ffffff;
+  padding: 12px 25px 12px 25px;
+  border: 0px;
+  border-radius: 6px;
+  font-family: 'Roboto';
+  margin-top: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+`
+
+export const VideosContainer = styled.ul`
+  padding-left: 0px;
 `
