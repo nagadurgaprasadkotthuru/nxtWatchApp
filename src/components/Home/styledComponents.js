@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const BgContainer = styled.div`
   min-height: 100vh;
   padding: 0px;
+  background-color: #f9f9f9;
 `
 
 export const PremiumBanner = styled.div`
@@ -60,7 +61,7 @@ export const TransparentContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 4px;
-  background-color: #f1f1f1;
+  background-color: transparent;
   padding: 15px 20px 15px 20px;
 `
 
@@ -77,7 +78,7 @@ export const Input = styled.input`
 
 export const SearchButton = styled.button`
   font-family: 'Roboto';
-  background-color: transparent;
+  background-color: #f1f1f1;
   border: 1px solid #909090;
   padding: 8px;
   width: 20%;
@@ -133,5 +134,7 @@ export const RetryButton = styled.button`
 `
 
 export const VideosContainer = styled.ul`
-  padding-left: 0px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
 `

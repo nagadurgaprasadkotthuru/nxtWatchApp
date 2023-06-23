@@ -19,7 +19,7 @@ import NxtContext from '../../context/NxtContext'
 import {
   NavContainer,
   TransparentContainer,
-  WebsiteLogo,
+  Image,
   NavItemsContainer,
   NavItem,
   TransparentButton,
@@ -40,7 +40,7 @@ const Header = props => {
         return (
           <NavContainer>
             <TransparentContainer>
-              <WebsiteLogo
+              <Image
                 alt="nxt watch logo"
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
               />
@@ -50,7 +50,7 @@ const Header = props => {
                     <FaMoon style={{padding: '0px', margin: '0px'}} />
                   </TransparentButton>
                 </NavItem>
-                <NavItem>
+                <NavItem small>
                   {isShowNavigationItems ? (
                     <TransparentButton
                       onClick={onClickIsShowNavigationItems}
@@ -64,13 +64,50 @@ const Header = props => {
                     </TransparentButton>
                   )}
                 </NavItem>
-                <NavItem>
+                <NavItem small>
                   <Popup
                     modal
                     trigger={
                       <TransparentButton>
                         <FiLogOut />
                       </TransparentButton>
+                    }
+                    contentStyle={{
+                      borderRadius: '6px',
+                      width: '300px',
+                      height: '150px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {close => (
+                      <TransparentContainer popup>
+                        <Description>
+                          Are you sure you want to logout?
+                        </Description>
+                        <TransparentContainer>
+                          <Button onClick={() => close()} outline>
+                            Cancel
+                          </Button>
+                          <Button onClick={onLogout}>Confirm</Button>
+                        </TransparentContainer>
+                      </TransparentContainer>
+                    )}
+                  </Popup>
+                </NavItem>
+                <NavItem medium>
+                  <Image
+                    profile
+                    alt="profile"
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+                  />
+                </NavItem>
+                <NavItem medium>
+                  <Popup
+                    modal
+                    trigger={
+                      <TransparentButton outline>Logout</TransparentButton>
                     }
                     contentStyle={{
                       borderRadius: '6px',

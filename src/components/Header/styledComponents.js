@@ -14,9 +14,9 @@ export const TransparentContainer = styled.div`
   align-items: center;
 `
 
-export const WebsiteLogo = styled.img`
-  width: 95px;
-  height: 20px;
+export const Image = styled.img`
+  width: ${props => (props.profile ? '26px' : '95px')};
+  height: ${props => (props.profile ? '26px' : '20px')};
 `
 
 export const NavItemsContainer = styled.ul`
@@ -28,17 +28,26 @@ export const NavItemsContainer = styled.ul`
 
 export const NavItem = styled.li`
   list-style-type: none;
+  margin-right: 8px;
+  @media screen and (min-width: 768px) {
+    display: ${props => props.small && 'none'};
+  }
+  @media screen and (max-width: 767px) {
+    display: ${props => props.medium && 'none'};
+  }
 `
 
 export const TransparentButton = styled.button`
   background-color: transparent;
-  border: 0px;
+  border: ${props => (props.outline ? '1px solid #3b82f6' : '0px')};
   font-family: 'Roboto';
-  color: #0f0f0f;
+  color: ${props => (props.outline ? '#3b82f6' : '#0f0f0f')};
   font-size: ${props => (props.close ? '26px' : '22px')};
+  font-size: ${props => props.outline && '16px'};
+  padding: ${props => props.outline && '4px 12px 4px 12px'};
+  margin: ${props => props.outline && '0px 0px 4px 5px'};
   width: fit-content;
   height: fit-content;
-  margin-right: 6px;
   cursor: pointer;
   outline: none;
 `

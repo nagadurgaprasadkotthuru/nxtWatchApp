@@ -4,6 +4,10 @@ import {BsDot} from 'react-icons/bs'
 
 export const Card = styled.li`
   list-style-type: none;
+  @media screen and (min-width: 576px) {
+    width: 40%;
+    margin: 10px 25px 20px 0px;
+  }
 `
 
 export const Image = styled.img`
