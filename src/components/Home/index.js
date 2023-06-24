@@ -13,6 +13,15 @@ import ThumbnailCard from '../ThumbnailCard'
 
 import {
   BgContainer,
+  BgContainer2,
+  HomeNavigationContainer,
+  NavItemsContainer,
+  NavItem,
+  AiFillHomeIcon,
+  HiFireIcon,
+  SiYoutubegamingIcon,
+  BiListPlusIcon,
+  HomeBannerContainer,
   PremiumBanner,
   PremiumContainer,
   WebsiteLogo,
@@ -38,9 +47,33 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
+const NavigationItemsList = [
+  {
+    id: 1,
+    displayText: 'Home',
+    Icon: AiFillHomeIcon,
+  },
+  {
+    id: 2,
+    displayText: 'Trending',
+    Icon: HiFireIcon,
+  },
+  {
+    id: 3,
+    displayText: 'Gaming',
+    Icon: SiYoutubegamingIcon,
+  },
+  {
+    id: 4,
+    displayText: 'Saved videos',
+    Icon: BiListPlusIcon,
+  },
+]
+
 class Home extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
+    activeTab: 1,
     searchInput: '',
     videosList: [],
   }
@@ -85,6 +118,8 @@ class Home extends Component {
   }
 
   onChangeInput = event => this.setState({searchInput: event.target.value})
+
+  onChangeActiveTab = event => this.setState({activeTab: event.target.value})
 
   renderSuccessView = () => {
     const {videosList} = this.state
@@ -147,6 +182,24 @@ class Home extends Component {
     }
   }
 
+  renderNavigationItem = itemDetails => {
+    const {id, displayText, Icon} = itemDetails
+    const {activeTab} = this.state
+    const active = activeTab === id
+    console.log(active)
+    return (
+      <NavItem
+        key={id}
+        active={active.toString()}
+        onClick={this.onChangeActiveTab}
+        value={id}
+      >
+        <Icon active={active.toString()} />
+        {displayText}
+      </NavItem>
+    )
+  }
+
   render() {
     const {searchInput} = this.state
     return (
@@ -156,41 +209,52 @@ class Home extends Component {
           return (
             <BgContainer data-testid="home">
               <Header />
-              {isShowBanner && (
-                <PremiumBanner data-testid="banner">
-                  <PremiumContainer>
-                    <WebsiteLogo
-                      alt="nxt watch logo"
-                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+              <BgContainer2>
+                <HomeNavigationContainer>
+                  <NavItemsContainer>
+                    {NavigationItemsList.map(eachItem =>
+                      this.renderNavigationItem(eachItem),
+                    )}
+                  </NavItemsContainer>
+                </HomeNavigationContainer>
+                <HomeBannerContainer>
+                  {isShowBanner && (
+                    <PremiumBanner data-testid="banner">
+                      <PremiumContainer>
+                        <WebsiteLogo
+                          alt="nxt watch logo"
+                          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                        />
+                        <PremiumDescription>
+                          Buy Nxt Watch Premium prepaid plans with UPI
+                        </PremiumDescription>
+                        <OutlineButton>GET IT NOW</OutlineButton>
+                      </PremiumContainer>
+                      <TransparentButton
+                        data-testid="close"
+                        onClick={onClickIsShowBanner}
+                      >
+                        <IoIosClose style={{width: '35px', height: '35px'}} />
+                      </TransparentButton>
+                    </PremiumBanner>
+                  )}
+                  <TransparentContainer>
+                    <Input
+                      type="search"
+                      placeholder="Search"
+                      value={searchInput}
+                      onChange={this.onChangeInput}
                     />
-                    <PremiumDescription>
-                      Buy Nxt Watch Premium prepaid plans with UPI
-                    </PremiumDescription>
-                    <OutlineButton>GET IT NOW</OutlineButton>
-                  </PremiumContainer>
-                  <TransparentButton
-                    data-testid="close"
-                    onClick={onClickIsShowBanner}
-                  >
-                    <IoIosClose style={{width: '35px', height: '35px'}} />
-                  </TransparentButton>
-                </PremiumBanner>
-              )}
-              <TransparentContainer>
-                <Input
-                  type="search"
-                  placeholder="Search"
-                  value={searchInput}
-                  onChange={this.onChangeInput}
-                />
-                <SearchButton
-                  data-testid="searchButton"
-                  onClick={this.getVideosData}
-                >
-                  <AiOutlineSearch />
-                </SearchButton>
-              </TransparentContainer>
-              {this.renderSwitchView()}
+                    <SearchButton
+                      data-testid="searchButton"
+                      onClick={this.getVideosData}
+                    >
+                      <AiOutlineSearch />
+                    </SearchButton>
+                  </TransparentContainer>
+                  {this.renderSwitchView()}
+                </HomeBannerContainer>
+              </BgContainer2>
             </BgContainer>
           )
         }}

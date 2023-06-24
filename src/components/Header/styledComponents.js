@@ -17,6 +17,10 @@ export const TransparentContainer = styled.div`
 export const Image = styled.img`
   width: ${props => (props.profile ? '26px' : '95px')};
   height: ${props => (props.profile ? '26px' : '20px')};
+  @media screen and (min-width: 576px) {
+    width: ${props => (props.profile ? '28px' : '140px')};
+    height: ${props => (props.profile ? '28px' : '30px')};
+  }
 `
 
 export const NavItemsContainer = styled.ul`
@@ -29,11 +33,11 @@ export const NavItemsContainer = styled.ul`
 export const NavItem = styled.li`
   list-style-type: none;
   margin-right: 8px;
+  @media screen and (max-width: 768px) {
+    display: ${props => props.medium && 'none'};
+  }
   @media screen and (min-width: 768px) {
     display: ${props => props.small && 'none'};
-  }
-  @media screen and (max-width: 767px) {
-    display: ${props => props.medium && 'none'};
   }
 `
 
@@ -50,6 +54,11 @@ export const TransparentButton = styled.button`
   height: fit-content;
   cursor: pointer;
   outline: none;
+  @media screen and (min-width: 576px) {
+    font-size: ${props => (props.close ? '34px' : '26px')};
+    padding-top: ${props => (props.close ? '0px' : '4px')};
+    font-size: ${props => props.outline && '16px'};
+  }
 `
 
 export const Description = styled.p`

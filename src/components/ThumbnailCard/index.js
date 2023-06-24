@@ -20,12 +20,16 @@ const ThumbnailCard = props => {
         <Image channelLogo alt="channel logo" src={channel.profileImageUrl} />
         <TransparentContainer col>
           <Description>{title}</Description>
-          <TransparentContainer>
-            <Description small>{channel.name}</Description>
-            <BsDotElement />
-            <Description small>{viewCount}</Description>
-            <BsDotElement />
-            <Description small>{timeString}</Description>
+          <TransparentContainer small>
+            <Description channel small>
+              {channel.name}
+              <BsDotElement />
+            </Description>
+            <Description small>
+              {viewCount}
+              <BsDotElement />
+              {timeString}
+            </Description>
           </TransparentContainer>
         </TransparentContainer>
       </TransparentContainer>

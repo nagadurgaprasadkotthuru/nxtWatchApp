@@ -5,8 +5,11 @@ import {BsDot} from 'react-icons/bs'
 export const Card = styled.li`
   list-style-type: none;
   @media screen and (min-width: 576px) {
-    width: 40%;
-    margin: 10px 25px 20px 0px;
+    width: 46%;
+    margin: 10px 20px 20px 0px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 30%;
   }
 `
 
@@ -20,6 +23,7 @@ export const Image = styled.img`
 export const TransparentContainer = styled.div`
   display: flex;
   flex-direction: ${props => (props.col ? 'column' : 'row')};
+  flex-wrap: ${props => (props.small ? 'wrap' : 'none')};
   padding: 4px 0px 4px 0px;
 `
 
@@ -27,6 +31,12 @@ export const Description = styled.p`
   font-family: 'Roboto';
   font-size: ${props => (props.small ? '14px' : '16px')};
   margin: 0px;
+  display: flex;
+  align-items: center;
+  @media screen and (min-width: 576px) {
+    font-size: ${props => (props.small ? '16px' : '18px')};
+    font-size: ${props => props.channel && '18px'};
+  }
 `
 
 export const BsDotElement = styled(BsDot)`

@@ -98,7 +98,7 @@ const Header = props => {
                 </NavItem>
                 <NavItem medium>
                   <Image
-                    profile
+                    profile="true"
                     alt="profile"
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
                   />
