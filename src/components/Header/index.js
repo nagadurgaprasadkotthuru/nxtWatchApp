@@ -6,6 +6,7 @@ import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
 
 import {FaMoon} from 'react-icons/fa'
+import {BsSun} from 'react-icons/bs'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {FiLogOut} from 'react-icons/fi'
 import {AiFillHome} from 'react-icons/ai'
@@ -36,18 +37,31 @@ const Header = props => {
   return (
     <NxtContext.Consumer>
       {value => {
-        const {isShowNavigationItems, onClickIsShowNavigationItems} = value
+        const {
+          isShowNavigationItems,
+          onClickIsShowNavigationItems,
+          theme,
+          onChangeTheme,
+        } = value
+        const imageUrl =
+          theme === true
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
         return (
-          <NavContainer>
+          <NavContainer theme={theme}>
             <TransparentContainer>
-              <Image
-                alt="nxt watch logo"
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-              />
+              <Image alt="nxt watch logo" src={imageUrl} />
               <NavItemsContainer>
                 <NavItem>
-                  <TransparentButton data-testid="theme">
-                    <FaMoon style={{padding: '0px', margin: '0px'}} />
+                  <TransparentButton
+                    data-testid="theme"
+                    onClick={onChangeTheme}
+                  >
+                    {theme === true ? (
+                      <FaMoon style={{padding: '0px', margin: '0px'}} />
+                    ) : (
+                      <BsSun style={{padding: '0px', margin: '0px'}} />
+                    )}
                   </TransparentButton>
                 </NavItem>
                 <NavItem small>

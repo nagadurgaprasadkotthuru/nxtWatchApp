@@ -12,23 +12,29 @@ import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {isShowBanner: true, isShowNavigationItems: false}
-
-  onClickIsShowBanner = () => this.setState({isShowBanner: false})
+  state = {theme: false, isShowNavigationItems: false}
 
   onClickIsShowNavigationItems = () =>
     this.setState(prevState => ({
       isShowNavigationItems: !prevState.isShowNavigationItems,
     }))
 
+  onChangeTheme = () =>
+    this.setState(prevState => ({theme: !prevState.theme}), this.print())
+
+  print = () => {
+    const {theme} = this.state
+    console.log(theme)
+  }
+
   render() {
-    const {isShowBanner, isShowNavigationItems} = this.state
+    const {isShowNavigationItems, theme} = this.state
     return (
       <NxtContext.Provider
         value={{
-          isShowBanner,
           isShowNavigationItems,
-          onClickIsShowBanner: this.onClickIsShowBanner,
+          theme,
+          onChangeTheme: this.onChangeTheme,
           onClickIsShowNavigationItems: this.onClickIsShowNavigationItems,
         }}
       >

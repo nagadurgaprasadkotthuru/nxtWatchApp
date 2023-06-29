@@ -1,10 +1,10 @@
 import React from 'react'
 
 const NxtContext = React.createContext({
-  isShowBanner: true,
+  theme: false,
   isShowNavigationItems: false,
-  onClickIsShowBanner: () => {},
   onClickIsShowNavigationItems: () => {},
+  onChangeTheme: () => {},
 })
 
 export default NxtContext

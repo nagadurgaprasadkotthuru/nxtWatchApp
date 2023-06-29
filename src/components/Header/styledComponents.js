@@ -1,10 +1,56 @@
 import styled from 'styled-components'
 
+import {FaMoon} from 'react-icons/fa'
+import {BsSun} from 'react-icons/bs'
+import {GiHamburgerMenu} from 'react-icons/gi'
+import {FiLogOut} from 'react-icons/fi'
+import {AiFillHome} from 'react-icons/ai'
+import {HiFire} from 'react-icons/hi'
+import {SiYoutubegaming} from 'react-icons/si'
+import {BiListPlus} from 'react-icons/bi'
+import {IoCloseSharp} from 'react-icons/io5'
+
+export const FaMoonIcon = styled(FaMoon)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const BsSunIcon = styled(BsSun)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const GiHamburgerMenuIcon = styled(GiHamburgerMenu)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const FiLogOutIcon = styled(FiLogOut)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const AiFillHomeIcon = styled(AiFillHome)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const HiFireIcon = styled(HiFire)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const SiYoutubegamingIcon = styled(SiYoutubegaming)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const BiListPlusIcon = styled(BiListPlus)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
+export const IoCloseSharpIcon = styled(IoCloseSharp)`
+  color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
+
 export const NavContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0px 20px 0px 20px;
-  background-color: #ffffff;
+  background-color: ${props => (props.theme === true ? '#f9f9f9' : '#0f0f0f')};
 `
 
 export const TransparentContainer = styled.div`

@@ -73,6 +73,7 @@ const NavigationItemsList = [
 class Home extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
+    isShowBanner: true,
     activeTab: 1,
     searchInput: '',
     videosList: [],
@@ -120,6 +121,8 @@ class Home extends Component {
   onChangeInput = event => this.setState({searchInput: event.target.value})
 
   onChangeActiveTab = event => this.setState({activeTab: event.target.value})
+
+  onClickIsShowBanner = () => this.setState({isShowBanner: false})
 
   renderSuccessView = () => {
     const {videosList} = this.state
@@ -201,13 +204,13 @@ class Home extends Component {
   }
 
   render() {
-    const {searchInput} = this.state
+    const {searchInput, isShowBanner} = this.state
     return (
       <NxtContext.Consumer>
         {value => {
-          const {isShowBanner, onClickIsShowBanner} = value
+          const {theme} = value
           return (
-            <BgContainer data-testid="home">
+            <BgContainer data-testid="home" theme={theme}>
               <Header />
               <BgContainer2>
                 <HomeNavigationContainer>
@@ -232,7 +235,7 @@ class Home extends Component {
                       </PremiumContainer>
                       <TransparentButton
                         data-testid="close"
-                        onClick={onClickIsShowBanner}
+                        onClick={this.onClickIsShowBanner}
                       >
                         <IoIosClose style={{width: '35px', height: '35px'}} />
                       </TransparentButton>

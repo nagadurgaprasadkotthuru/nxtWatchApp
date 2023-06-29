@@ -28,7 +28,7 @@ export const BiListPlusIcon = styled(BiListPlus)`
 export const BgContainer = styled.div`
   min-height: 100vh;
   padding: 0px;
-  background-color: #f9f9f9;
+  background-color: ${props => (props.theme === true ? '#f9f9f9' : '#0f0f0f')};
 `
 
 export const BgContainer2 = styled.div`
