@@ -5,16 +5,6 @@ import Cookies from 'js-cookie'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
 
-import {FaMoon} from 'react-icons/fa'
-import {BsSun} from 'react-icons/bs'
-import {GiHamburgerMenu} from 'react-icons/gi'
-import {FiLogOut} from 'react-icons/fi'
-import {AiFillHome} from 'react-icons/ai'
-import {HiFire} from 'react-icons/hi'
-import {SiYoutubegaming} from 'react-icons/si'
-import {BiListPlus} from 'react-icons/bi'
-import {IoCloseSharp} from 'react-icons/io5'
-
 import NxtContext from '../../context/NxtContext'
 
 import {
@@ -26,6 +16,15 @@ import {
   TransparentButton,
   Description,
   Button,
+  FaMoonIcon,
+  BiSunIcon,
+  GiHamburgerMenuIcon,
+  FiLogOutIcon,
+  AiFillHomeIcon,
+  HiFireIcon,
+  SiYoutubegamingIcon,
+  BiListPlusIcon,
+  IoCloseSharpIcon,
 } from './styledComponents'
 
 const Header = props => {
@@ -44,7 +43,7 @@ const Header = props => {
           onChangeTheme,
         } = value
         const imageUrl =
-          theme === true
+          theme === 'true'
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
             : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
         return (
@@ -58,9 +57,15 @@ const Header = props => {
                     onClick={onChangeTheme}
                   >
                     {theme === true ? (
-                      <FaMoon style={{padding: '0px', margin: '0px'}} />
+                      <FaMoonIcon
+                        theme={theme}
+                        style={{padding: '0px', margin: '0px'}}
+                      />
                     ) : (
-                      <BsSun style={{padding: '0px', margin: '0px'}} />
+                      <BiSunIcon
+                        theme={theme}
+                        style={{padding: '0px', margin: '0px'}}
+                      />
                     )}
                   </TransparentButton>
                 </NavItem>
@@ -70,11 +75,11 @@ const Header = props => {
                       onClick={onClickIsShowNavigationItems}
                       close
                     >
-                      <IoCloseSharp />
+                      <IoCloseSharpIcon theme={theme} />
                     </TransparentButton>
                   ) : (
                     <TransparentButton onClick={onClickIsShowNavigationItems}>
-                      <GiHamburgerMenu />
+                      <GiHamburgerMenuIcon theme={theme} />
                     </TransparentButton>
                   )}
                 </NavItem>
@@ -83,7 +88,7 @@ const Header = props => {
                     modal
                     trigger={
                       <TransparentButton>
-                        <FiLogOut />
+                        <FiLogOutIcon theme={theme} />
                       </TransparentButton>
                     }
                     contentStyle={{
@@ -153,22 +158,22 @@ const Header = props => {
               <NavItemsContainer>
                 <NavItem>
                   <TransparentButton onClick={onClickIsShowNavigationItems}>
-                    <AiFillHome />
+                    <AiFillHomeIcon theme={theme} />
                   </TransparentButton>
                 </NavItem>
                 <NavItem>
                   <TransparentButton onClick={onClickIsShowNavigationItems}>
-                    <HiFire />
+                    <HiFireIcon theme={theme} />
                   </TransparentButton>
                 </NavItem>
                 <NavItem>
                   <TransparentButton onClick={onClickIsShowNavigationItems}>
-                    <SiYoutubegaming />
+                    <SiYoutubegamingIcon theme={theme} />
                   </TransparentButton>
                 </NavItem>
                 <NavItem>
                   <TransparentButton onClick={onClickIsShowNavigationItems}>
-                    <BiListPlus />
+                    <BiListPlusIcon theme={theme} />
                   </TransparentButton>
                 </NavItem>
               </NavItemsContainer>

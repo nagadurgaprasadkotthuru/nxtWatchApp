@@ -12,28 +12,23 @@ import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {theme: false, isShowNavigationItems: false}
+  state = {theme: true, isShowNavigationItems: false}
 
   onClickIsShowNavigationItems = () =>
     this.setState(prevState => ({
       isShowNavigationItems: !prevState.isShowNavigationItems,
     }))
 
-  onChangeTheme = () =>
-    this.setState(prevState => ({theme: !prevState.theme}), this.print())
-
-  print = () => {
-    const {theme} = this.state
-    console.log(theme)
-  }
+  onChangeTheme = () => this.setState(prevState => ({theme: !prevState.theme}))
 
   render() {
     const {isShowNavigationItems, theme} = this.state
+    console.log(theme)
     return (
       <NxtContext.Provider
         value={{
           isShowNavigationItems,
-          theme,
+          theme: theme.toString(),
           onChangeTheme: this.onChangeTheme,
           onClickIsShowNavigationItems: this.onClickIsShowNavigationItems,
         }}

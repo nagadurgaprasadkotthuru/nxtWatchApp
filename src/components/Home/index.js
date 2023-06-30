@@ -189,7 +189,6 @@ class Home extends Component {
     const {id, displayText, Icon} = itemDetails
     const {activeTab} = this.state
     const active = activeTab === id
-    console.log(active)
     return (
       <NavItem
         key={id}
