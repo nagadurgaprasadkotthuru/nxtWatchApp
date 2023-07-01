@@ -25,6 +25,7 @@ import {
   SiYoutubegamingIcon,
   BiListPlusIcon,
   IoCloseSharpIcon,
+  LogoutButton,
 } from './styledComponents'
 
 const Header = props => {
@@ -56,7 +57,7 @@ const Header = props => {
                     data-testid="theme"
                     onClick={onChangeTheme}
                   >
-                    {theme === true ? (
+                    {theme === 'true' ? (
                       <FaMoonIcon
                         theme={theme}
                         style={{padding: '0px', margin: '0px'}}
@@ -126,7 +127,9 @@ const Header = props => {
                   <Popup
                     modal
                     trigger={
-                      <TransparentButton outline>Logout</TransparentButton>
+                      <LogoutButton outline theme={theme}>
+                        Logout
+                      </LogoutButton>
                     }
                     contentStyle={{
                       borderRadius: '6px',

@@ -33,6 +33,7 @@ export const Description = styled.p`
   margin: 0px;
   display: flex;
   align-items: center;
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f1f1f1')};
   @media screen and (min-width: 576px) {
     font-size: ${props => (props.small ? '16px' : '18px')};
     font-size: ${props => props.channel && '18px'};
@@ -42,6 +43,7 @@ export const Description = styled.p`
 export const BsDotElement = styled(BsDot)`
   font-size: 20px;
   font-weight: 700;
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f1f1f1')};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

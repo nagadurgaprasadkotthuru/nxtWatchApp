@@ -28,7 +28,8 @@ export const BiListPlusIcon = styled(BiListPlus)`
 export const BgContainer = styled.div`
   min-height: 100vh;
   padding: 0px;
-  background-color: ${props => (props.theme === true ? '#f9f9f9' : '#0f0f0f')};
+  background-color: ${props =>
+    props.theme === 'true' ? '#f9f9f9' : '#0f0f0f'};
 `
 
 export const BgContainer2 = styled.div`
@@ -55,15 +56,21 @@ export const NavItem = styled.li`
   padding: 6px 10px 6px 10px;
   display: flex;
   align-items: center;
-  background-color: ${props => props.active === 'true' && '#e2e8f0'};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#ffffff')};
+  background-color: ${props =>
+    props.active === 'true' &&
+    (props.theme === 'true' ? '#e2e8f0' : '#313131')};
   font-weight: ${props => props.active === 'true' && '500'};
   font-family: 'Roboto';
+  font-size: 14px;
   cursor: pointer;
   outline: none;
 `
 
 export const HomeBannerContainer = styled.div`
-  width: 80%;
+  @media screen and (min-width: 768px) {
+    width: 80%;
+  }
 `
 
 export const PremiumBanner = styled.div`
@@ -137,7 +144,7 @@ export const Input = styled.input`
   font-family: 'Roboto';
   width: 80%;
   height: 35px;
-  background-color: #ffffff;
+  background-color: transparent;
   border: 1px solid #909090;
   padding-left: 10px;
   font-weight: 400;
@@ -156,12 +163,13 @@ export const Input = styled.input`
 
 export const SearchButton = styled.button`
   font-family: 'Roboto';
-  background-color: #f1f1f1;
+  background-color: transparent;
   border: 1px solid #909090;
   padding: 8px;
   width: 20%;
   height: 35px;
   font-size: 18px;
+  color: #606060;
   cursor: pointer;
   outline: none;
   @media screen and (min-width: 576px) {

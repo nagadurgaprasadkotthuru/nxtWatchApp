@@ -10,7 +10,7 @@ import {BiSun, BiListPlus} from 'react-icons/bi'
 import {IoCloseSharp} from 'react-icons/io5'
 
 export const FaMoonIcon = styled(FaMoon)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const BiSunIcon = styled(BiSun)`
@@ -18,31 +18,31 @@ export const BiSunIcon = styled(BiSun)`
 `
 
 export const GiHamburgerMenuIcon = styled(GiHamburgerMenu)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const FiLogOutIcon = styled(FiLogOut)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const AiFillHomeIcon = styled(AiFillHome)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const HiFireIcon = styled(HiFire)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const SiYoutubegamingIcon = styled(SiYoutubegaming)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const BiListPlusIcon = styled(BiListPlus)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const IoCloseSharpIcon = styled(IoCloseSharp)`
-  color: ${props => (props.theme === 'true' ? '#f9f9f9' : '#0f0f0f')};
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const NavContainer = styled.div`
@@ -89,13 +89,9 @@ export const NavItem = styled.li`
 
 export const TransparentButton = styled.button`
   background-color: transparent;
-  border: ${props => (props.outline ? '1px solid #3b82f6' : '0px')};
+  border: 0px;
   font-family: 'Roboto';
-  color: ${props => (props.outline ? '#3b82f6' : '#0f0f0f')};
   font-size: ${props => (props.close ? '26px' : '22px')};
-  font-size: ${props => props.outline && '16px'};
-  padding: ${props => props.outline && '4px 12px 4px 12px'};
-  margin: ${props => props.outline && '0px 0px 4px 5px'};
   width: fit-content;
   height: fit-content;
   cursor: pointer;
@@ -103,7 +99,6 @@ export const TransparentButton = styled.button`
   @media screen and (min-width: 576px) {
     font-size: ${props => (props.close ? '34px' : '26px')};
     padding-top: ${props => (props.close ? '0px' : '4px')};
-    font-size: ${props => props.outline && '16px'};
   }
 `
 
@@ -123,4 +118,19 @@ export const Button = styled.button`
   padding: 10px 25px 10px 25px;
   margin-right: ${props => (props.outline ? '30px' : '0px')};
   font-size: 16px;
+  cursor: pointer;
+  outline: none;
+`
+
+export const LogoutButton = styled.button`
+  font-family: 'Roboto';
+  color: ${props => (props.theme === 'true' ? '#3b82f6' : '#ffffff')};
+  background-color: transparent;
+  border: 1px solid ${props => (props.theme === 'true' ? '#3b82f6' : '#ffffff')};
+  border-radius: 5px;
+  padding: 6px 16px 6px 16px;
+  font-size: 14px;
+  margin: 0px 0px 4px 5px;
+  cursor: pointer;
+  outline: none;
 `

@@ -185,7 +185,7 @@ class Home extends Component {
     }
   }
 
-  renderNavigationItem = itemDetails => {
+  renderNavigationItem = (itemDetails, theme) => {
     const {id, displayText, Icon} = itemDetails
     const {activeTab} = this.state
     const active = activeTab === id
@@ -195,6 +195,7 @@ class Home extends Component {
         active={active.toString()}
         onClick={this.onChangeActiveTab}
         value={id}
+        theme={theme}
       >
         <Icon active={active.toString()} />
         {displayText}
@@ -215,7 +216,7 @@ class Home extends Component {
                 <HomeNavigationContainer>
                   <NavItemsContainer>
                     {NavigationItemsList.map(eachItem =>
-                      this.renderNavigationItem(eachItem),
+                      this.renderNavigationItem(eachItem, theme),
                     )}
                   </NavItemsContainer>
                 </HomeNavigationContainer>

@@ -6,16 +6,19 @@ export const BgContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${props =>
+    props.theme === 'true' ? '#f9f9f9' : '#181818'};
 `
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 4px 16px 0px #bfbfbf;
   border-radius: 10px;
   padding: 15px 30px 15px 30px;
   width: 320px;
   height: fit-content;
+  background-color: ${props =>
+    props.theme === 'true' ? '#ffffff' : '#0f0f0f'};
 `
 
 export const WebsiteLogo = styled.img`
@@ -32,8 +35,11 @@ export const DflexContainer = styled.div`
 
 export const Label = styled.label`
   font-family: 'Roboto';
-  margin-bottom: ${props => (props.id === 'checkbox' ? '0px' : '5px')};
-  color: ${props => (props.id === 'checkbox' ? '#181818' : '#616e7c')};
+  margin-bottom: ${props => (props.id === 'checkbox' ? '4px' : '5px')};
+  color: ${props =>
+    props.id === 'checkbox'
+      ? `${props.theme === 'true' ? '#0f0f0f' : '#ffffff'}`
+      : `${props.theme === 'true' ? '#616e7c' : '#ffffff'}`};
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
@@ -48,6 +54,7 @@ export const Input = styled.input`
   padding-left: 10px;
   border: 1px solid #616e7c;
   color: #616e7c;
+  background-color: transparent;
   font-size: 16px;
   width: ${props => (props.id === 'checkbox' ? '20px' : '')};
   height: ${props => (props.id === 'checkbox' ? '20px' : '')};

@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom'
 
 import Cookies from 'js-cookie'
 
+import NxtContext from '../../context/NxtContext'
+
 import {
   BgContainer,
   Form,
@@ -68,41 +70,55 @@ class Login extends Component {
       return <Redirect to="/" />
     }
     return (
-      <BgContainer>
-        <Form onSubmit={this.onSubmitForm}>
-          <WebsiteLogo
-            alt="nxt watch logo"
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-          />
-          <Label htmlFor="username">USERNAME</Label>
-          <Input
-            id="username"
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={this.onChangeUsername}
-          />
-          <Label htmlFor="password">PASSWORD</Label>
-          <Input
-            id="password"
-            type={isShowPassword ? 'text' : 'password'}
-            placeholder="Password"
-            value={password}
-            onChange={this.onChangePassword}
-          />
-          <DflexContainer>
-            <Input
-              id="checkbox"
-              type="checkbox"
-              onChange={this.onClickCheckbox}
-              checked={isShowPassword}
-            />
-            <Label htmlFor="checkbox">Show Password</Label>
-          </DflexContainer>
-          <Button type="submit">Login</Button>
-          {isShowErrorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
-        </Form>
-      </BgContainer>
+      <NxtContext.Consumer>
+        {value => {
+          const {theme} = value
+          const imageUrl =
+            theme === 'true'
+              ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+              : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+          return (
+            <BgContainer theme={theme}>
+              <Form theme={theme} onSubmit={this.onSubmitForm}>
+                <WebsiteLogo alt="nxt watch logo" src={imageUrl} />
+                <Label theme={theme} htmlFor="username">
+                  USERNAME
+                </Label>
+                <Input
+                  id="username"
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={this.onChangeUsername}
+                />
+                <Label theme={theme} htmlFor="password">
+                  PASSWORD
+                </Label>
+                <Input
+                  id="password"
+                  type={isShowPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                  value={password}
+                  onChange={this.onChangePassword}
+                />
+                <DflexContainer>
+                  <Input
+                    id="checkbox"
+                    type="checkbox"
+                    onChange={this.onClickCheckbox}
+                    checked={isShowPassword}
+                  />
+                  <Label theme={theme} id="checkbox" htmlFor="checkbox">
+                    Show Password
+                  </Label>
+                </DflexContainer>
+                <Button type="submit">Login</Button>
+                {isShowErrorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
+              </Form>
+            </BgContainer>
+          )
+        }}
+      </NxtContext.Consumer>
     )
   }
 }
