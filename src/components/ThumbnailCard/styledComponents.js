@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import {Link} from 'react-router-dom'
+
 import {BsDot} from 'react-icons/bs'
 
 export const Card = styled.li`
@@ -48,4 +50,8 @@ export const BsDotElement = styled(BsDot)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+`
+
+export const LinkElement = styled(Link)`
+  text-decoration: none;
 `

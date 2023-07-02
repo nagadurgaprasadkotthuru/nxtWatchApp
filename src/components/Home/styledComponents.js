@@ -1,30 +1,5 @@
 import styled from 'styled-components'
 
-import {AiFillHome} from 'react-icons/ai'
-import {HiFire} from 'react-icons/hi'
-import {SiYoutubegaming} from 'react-icons/si'
-import {BiListPlus} from 'react-icons/bi'
-
-export const AiFillHomeIcon = styled(AiFillHome)`
-  color: ${props => props.active === 'true' && '#ff0b37'};
-  margin-right: 15px;
-`
-
-export const HiFireIcon = styled(HiFire)`
-  color: ${props => props.active === 'true' && '#ff0b37'};
-  margin-right: 15px;
-`
-
-export const SiYoutubegamingIcon = styled(SiYoutubegaming)`
-  color: ${props => props.active === 'true' && '#ff0b37'};
-  margin-right: 15px;
-`
-
-export const BiListPlusIcon = styled(BiListPlus)`
-  color: ${props => props.active === 'true' && '#ff0b37'};
-  margin-right: 15px;
-`
-
 export const BgContainer = styled.div`
   min-height: 100vh;
   padding: 0px;
@@ -34,37 +9,6 @@ export const BgContainer = styled.div`
 
 export const BgContainer2 = styled.div`
   display: flex;
-`
-
-export const HomeNavigationContainer = styled.div`
-  width: 20%;
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`
-
-export const NavItemsContainer = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-`
-
-export const NavItem = styled.li`
-  list-style-type: none;
-  margin: 6px 0px 6px 0px;
-  padding: 6px 10px 6px 10px;
-  display: flex;
-  align-items: center;
-  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#ffffff')};
-  background-color: ${props =>
-    props.active === 'true' &&
-    (props.theme === 'true' ? '#e2e8f0' : '#313131')};
-  font-weight: ${props => props.active === 'true' && '500'};
-  font-family: 'Roboto';
-  font-size: 14px;
-  cursor: pointer;
-  outline: none;
 `
 
 export const HomeBannerContainer = styled.div`
@@ -142,6 +86,7 @@ export const TransparentContainer = styled.div`
 
 export const Input = styled.input`
   font-family: 'Roboto';
+  color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
   width: 80%;
   height: 35px;
   background-color: transparent;
@@ -197,7 +142,7 @@ export const FailureViewContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding-top: ${props => (props.isShowBanner === 'true' ? '10px' : '30px')};
 `
 
 export const Image = styled.img`
@@ -209,6 +154,7 @@ export const Heading = styled.h1`
   text-align: center;
   font-size: 18px;
   margin: 6px 0px 6px 0px;
+  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const Description = styled.p`
@@ -216,6 +162,7 @@ export const Description = styled.p`
   text-align: center;
   font-size: 16px;
   margin: 6px 0px 6px 0px;
+  color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
 `
 
 export const RetryButton = styled.button`
@@ -232,9 +179,11 @@ export const RetryButton = styled.button`
 `
 
 export const VideosContainer = styled.ul`
-  padding: 20px 5px 20px 20px;
+  padding: 20px 5px 0px 5px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 0px;
+  height: ${props => (props.isShowBanner === 'true' ? '48vh' : '79vh')};
+  overflow-y: auto;
 `

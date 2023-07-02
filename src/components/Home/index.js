@@ -10,17 +10,11 @@ import {AiOutlineSearch} from 'react-icons/ai'
 import Header from '../Header'
 import NxtContext from '../../context/NxtContext'
 import ThumbnailCard from '../ThumbnailCard'
+import DesktopNavigation from '../DesktopNavigation'
 
 import {
   BgContainer,
   BgContainer2,
-  HomeNavigationContainer,
-  NavItemsContainer,
-  NavItem,
-  AiFillHomeIcon,
-  HiFireIcon,
-  SiYoutubegamingIcon,
-  BiListPlusIcon,
   HomeBannerContainer,
   PremiumBanner,
   PremiumContainer,
@@ -47,34 +41,10 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-const NavigationItemsList = [
-  {
-    id: 1,
-    displayText: 'Home',
-    Icon: AiFillHomeIcon,
-  },
-  {
-    id: 2,
-    displayText: 'Trending',
-    Icon: HiFireIcon,
-  },
-  {
-    id: 3,
-    displayText: 'Gaming',
-    Icon: SiYoutubegamingIcon,
-  },
-  {
-    id: 4,
-    displayText: 'Saved videos',
-    Icon: BiListPlusIcon,
-  },
-]
-
 class Home extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     isShowBanner: true,
-    activeTab: 1,
     searchInput: '',
     videosList: [],
   }
@@ -120,16 +90,14 @@ class Home extends Component {
 
   onChangeInput = event => this.setState({searchInput: event.target.value})
 
-  onChangeActiveTab = event => this.setState({activeTab: event.target.value})
-
   onClickIsShowBanner = () => this.setState({isShowBanner: false})
 
-  renderSuccessView = () => {
-    const {videosList} = this.state
+  renderSuccessView = theme => {
+    const {videosList, isShowBanner} = this.state
     return (
       <>
         {videosList.length > 0 ? (
-          <VideosContainer data-testid="loader">
+          <VideosContainer isShowBanner={isShowBanner.toString()}>
             {videosList.map(eachItem => (
               <ThumbnailCard cardDetails={eachItem} key={eachItem.id} />
             ))}
@@ -140,8 +108,8 @@ class Home extends Component {
               alt="no videos"
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
             />
-            <Heading>No Search results found</Heading>
-            <Description>
+            <Heading theme={theme}>No Search results found</Heading>
+            <Description theme={theme}>
               Try different key words or remove search filter
             </Description>
             <RetryButton onClick={this.getVideosData}>Retry</RetryButton>
@@ -151,19 +119,22 @@ class Home extends Component {
     )
   }
 
-  renderFailureView = () => (
-    <FailureViewContainer>
-      <Image
-        alt="failure view"
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-      />
-      <Heading>Oops! Something Went Wrong</Heading>
-      <Description>
-        We are having some trouble to complete your request. Please try again.
-      </Description>
-      <RetryButton onClick={this.getVideosData}>Retry</RetryButton>
-    </FailureViewContainer>
-  )
+  renderFailureView = theme => {
+    const {isShowBanner} = this.state
+    return (
+      <FailureViewContainer isShowBanner={isShowBanner.toString()}>
+        <Image
+          alt="failure view"
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+        />
+        <Heading theme={theme}>Oops! Something Went Wrong</Heading>
+        <Description theme={theme}>
+          We are having some trouble to complete your request. Please try again.
+        </Description>
+        <RetryButton onClick={this.getVideosData}>Retry</RetryButton>
+      </FailureViewContainer>
+    )
+  }
 
   renderLoadingView = () => (
     <LoaderContainer>
@@ -171,36 +142,18 @@ class Home extends Component {
     </LoaderContainer>
   )
 
-  renderSwitchView = () => {
+  renderSwitchView = theme => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderSuccessView()
+        return this.renderSuccessView(theme)
       case apiStatusConstants.failure:
-        return this.renderFailureView()
+        return this.renderFailureView(theme)
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
       default:
         return null
     }
-  }
-
-  renderNavigationItem = (itemDetails, theme) => {
-    const {id, displayText, Icon} = itemDetails
-    const {activeTab} = this.state
-    const active = activeTab === id
-    return (
-      <NavItem
-        key={id}
-        active={active.toString()}
-        onClick={this.onChangeActiveTab}
-        value={id}
-        theme={theme}
-      >
-        <Icon active={active.toString()} />
-        {displayText}
-      </NavItem>
-    )
   }
 
   render() {
@@ -213,13 +166,7 @@ class Home extends Component {
             <BgContainer data-testid="home" theme={theme}>
               <Header />
               <BgContainer2>
-                <HomeNavigationContainer>
-                  <NavItemsContainer>
-                    {NavigationItemsList.map(eachItem =>
-                      this.renderNavigationItem(eachItem, theme),
-                    )}
-                  </NavItemsContainer>
-                </HomeNavigationContainer>
+                <DesktopNavigation />
                 <HomeBannerContainer>
                   {isShowBanner && (
                     <PremiumBanner data-testid="banner">
@@ -255,7 +202,7 @@ class Home extends Component {
                       <AiOutlineSearch />
                     </SearchButton>
                   </TransparentContainer>
-                  {this.renderSwitchView()}
+                  {this.renderSwitchView(theme)}
                 </HomeBannerContainer>
               </BgContainer2>
             </BgContainer>
