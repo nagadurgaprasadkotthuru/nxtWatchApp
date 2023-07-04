@@ -100,8 +100,8 @@ class VideoItemDetails extends Component {
         <VideoPlayer url={videoUrl} />
         <TransparentContainer inner>
           <Heading theme={theme}>{title}</Heading>
-          <Description theme={theme}>
-            {viewCount} <BsDotElement theme={theme} /> {timeString}
+          <Description theme={theme} flex>
+            {viewCount} views <BsDotElement theme={theme} /> {timeString}
           </Description>
           <TransparentContainer row>
             <TransparentButton>
@@ -135,7 +135,7 @@ class VideoItemDetails extends Component {
               </Description>
             </TransparentContainer>
           </TransparentContainer>
-          <Description>{description}</Description>
+          <Description theme={theme}>{description}</Description>
         </TransparentContainer>
       </TransparentContainer>
     )

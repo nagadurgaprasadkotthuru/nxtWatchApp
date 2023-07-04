@@ -8,7 +8,7 @@ import {BiLike, BiDislike, BiListPlus} from 'react-icons/bi'
 export const BsDotElement = styled(BsDot)`
   font-size: 20px;
   font-weight: 700;
-  color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#94a3b8')};
+  color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -17,14 +17,17 @@ export const BsDotElement = styled(BsDot)`
 
 export const BiLikeElement = styled(BiLike)`
   font-size: 24px;
+  margin-right: 6px;
 `
 
 export const BiDislikeElement = styled(BiDislike)`
   font-size: 24px;
+  margin-right: 6px;
 `
 
 export const BiListPlusElement = styled(BiListPlus)`
   font-size: 24px;
+  margin-right: 6px;
 `
 
 export const BgContainer = styled.div`
@@ -64,6 +67,7 @@ export const FailureViewContainer = styled.div`
 export const Image = styled.img`
   width: 50px;
   height: 50px;
+  margin-right: 15px;
 `
 
 export const Heading = styled.h1`
@@ -74,16 +78,19 @@ export const Heading = styled.h1`
   margin: 6px 0px 6px 0px;
   color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
   text-align: left;
+  line-height: 1.5;
 `
 
 export const Description = styled.p`
   font-family: 'Roboto';
   text-align: center;
-  font-size: ${props => (props.small ? '12px' : '16px')};
+  font-size: ${props => (props.big ? '18px' : '14px')};
   font-weight: ${props => (props.bold ? '500' : 'normal')};
   margin: 6px 0px 6px 0px;
   color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
   text-align: left;
+  display: ${props => (props.flex ? 'flex' : 'block')};
+  line-height: 1.5;
 `
 
 export const RetryButton = styled.button`
@@ -101,6 +108,7 @@ export const RetryButton = styled.button`
 
 export const TransparentButton = styled.button`
   display: flex;
+  align-items: center;
   background-color: transparent;
   border: 0px;
   font-family: 'Roboto';
@@ -109,16 +117,17 @@ export const TransparentButton = styled.button`
   height: fit-content;
   cursor: pointer;
   outline: none;
+  margin-right: 6px;
 `
 
 export const TransparentContainer = styled.div`
   display: flex;
   flex-direction: ${props => (props.row ? 'row' : 'column')};
-  align-items: center;
+  align-items: ${props => (props.row ? 'center' : 'flex-start')};
   margin-top: 4px;
   background-color: transparent;
   padding: ${props =>
-    props.inner ? '20px 20px 20px 20px' : '15px 0px 15px 0px'};
+    props.inner ? '20px 20px 20px 20px' : '5px 0px 5px 0px'};
   @media screen and (min-width: 576px) {
     width: 75%;
     padding: 10px 20px 10px 20px;
@@ -136,4 +145,5 @@ export const VideoPlayer = styled(ReactPlayer)`
 
 export const HorizontalLine = styled.hr`
   color: #909090;
+  width: 100%;
 `
