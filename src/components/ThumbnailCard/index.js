@@ -19,9 +19,9 @@ const ThumbnailCard = props => {
   return (
     <NxtContext.Consumer>
       {value => {
-        const {theme} = value
+        const {theme, onChangeActiveTab} = value
         return (
-          <Card>
+          <Card onClick={onChangeActiveTab} value={id}>
             <LinkElement to={`/videos/${id}`}>
               <Image alt="video thumbnail" src={thumbnailUrl} />
               <TransparentContainer>

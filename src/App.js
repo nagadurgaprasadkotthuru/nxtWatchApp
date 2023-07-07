@@ -13,7 +13,12 @@ import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {theme: true, isShowNavigationItems: false, activeTab: 1}
+  state = {
+    theme: true,
+    isShowNavigationItems: false,
+    activeTab: 1,
+    savedList: [],
+  }
 
   onClickIsShowNavigationItems = () =>
     this.setState(prevState => ({
@@ -24,9 +29,30 @@ class App extends Component {
 
   onChangeActiveTab = event => this.setState({activeTab: event.target.value})
 
+  onSaveVideo = video => {
+    const {savedList} = this.state
+    let isVideoPresent = false
+    savedList.map(eachItem => {
+      if (eachItem.id === video.id) {
+        isVideoPresent = true
+        return null
+      }
+      return null
+    })
+    if (isVideoPresent) {
+      this.setState(prevState => ({
+        savedList: prevState.savedList.filter(
+          eachItem => eachItem.id !== video.id,
+        ),
+      }))
+    } else {
+      this.setState(prevState => ({savedList: [...prevState.savedList, video]}))
+    }
+  }
+
   render() {
-    const {isShowNavigationItems, theme, activeTab} = this.state
-    console.log(theme)
+    const {isShowNavigationItems, theme, activeTab, savedList} = this.state
+    console.log(savedList, activeTab)
     return (
       <NxtContext.Provider
         value={{
@@ -36,6 +62,7 @@ class App extends Component {
           onChangeTheme: this.onChangeTheme,
           onClickIsShowNavigationItems: this.onClickIsShowNavigationItems,
           onChangeActiveTab: this.onChangeActiveTab,
+          onSaveVideo: this.onSaveVideo,
         }}
       >
         <Switch>

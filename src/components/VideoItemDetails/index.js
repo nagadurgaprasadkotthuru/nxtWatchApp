@@ -28,6 +28,9 @@ import {
   BiDislikeElement,
   BiListPlusElement,
   HorizontalLine,
+  SaveTextElement,
+  LikeTextElement,
+  DislikeTextElement,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -38,7 +41,12 @@ const apiStatusConstants = {
 }
 
 class VideoItemDetails extends Component {
-  state = {apiStatus: apiStatusConstants.initial, videoDetails: ''}
+  state = {
+    apiStatus: apiStatusConstants.initial,
+    videoDetails: '',
+    like: 123456,
+    save: false,
+  }
 
   componentDidMount() {
     this.getVideoItemDetails()
@@ -75,16 +83,23 @@ class VideoItemDetails extends Component {
           subscriberCount: videoDetails.channel.subscriber_count,
         },
       }
-      console.log(formattedVideoDetails)
       this.setState({
         videoDetails: formattedVideoDetails,
         apiStatus: apiStatusConstants.success,
       })
+    } else {
+      this.setState({apiStatus: apiStatusConstants.failure})
     }
   }
 
-  renderSuccessView = theme => {
-    const {videoDetails} = this.state
+  onClickLike = () => this.setState({like: true})
+
+  onClickDislike = () => this.setState({like: false})
+
+  onClickSave = () => this.setState(prevState => ({save: !prevState.save}))
+
+  renderSuccessView = (theme, onSaveVideo) => {
+    const {videoDetails, like, save} = this.state
     const {
       title,
       videoUrl,
@@ -93,8 +108,13 @@ class VideoItemDetails extends Component {
       publishedAt,
       channel,
     } = videoDetails
+    const onSaveVideoObj = () => {
+      onSaveVideo(videoDetails)
+      this.onClickSave()
+    }
     const time = formatDistanceToNow(new Date(publishedAt)).split(' ')
     const timeString = `${time[1]} ${time[2]} ago`
+    const SavedText = save ? 'Saved' : 'Save'
     return (
       <TransparentContainer>
         <VideoPlayer url={videoUrl} />
@@ -104,23 +124,23 @@ class VideoItemDetails extends Component {
             {viewCount} views <BsDotElement theme={theme} /> {timeString}
           </Description>
           <TransparentContainer row>
-            <TransparentButton>
-              <BiLikeElement />
-              <Description theme={theme} bold big>
+            <TransparentButton onClick={this.onClickLike}>
+              <BiLikeElement like={like.toString()} />
+              <LikeTextElement theme={theme} like={like.toString()}>
                 Like
-              </Description>
+              </LikeTextElement>
             </TransparentButton>
-            <TransparentButton>
-              <BiDislikeElement />
-              <Description theme={theme} bold big>
+            <TransparentButton onClick={this.onClickDislike}>
+              <BiDislikeElement like={like.toString()} />
+              <DislikeTextElement theme={theme} like={like.toString()}>
                 Dislike
-              </Description>
+              </DislikeTextElement>
             </TransparentButton>
-            <TransparentButton>
-              <BiListPlusElement />
-              <Description theme={theme} bold big>
-                Save
-              </Description>
+            <TransparentButton onClick={onSaveVideoObj}>
+              <BiListPlusElement save={save.toString()} />
+              <SaveTextElement theme={theme} save={save.toString()}>
+                {SavedText}
+              </SaveTextElement>
             </TransparentButton>
           </TransparentContainer>
           <HorizontalLine />
@@ -141,19 +161,24 @@ class VideoItemDetails extends Component {
     )
   }
 
-  renderFailureView = theme => (
-    <FailureViewContainer>
-      <Image
-        alt="failure view"
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-      />
-      <Heading theme={theme}>Oops! Something Went Wrong</Heading>
-      <Description theme={theme}>
-        We are having some trouble to complete your request. Please try again.
-      </Description>
-      <RetryButton onClick={this.getVideosData}>Retry</RetryButton>
-    </FailureViewContainer>
-  )
+  renderFailureView = theme => {
+    const imageUrl =
+      theme === 'true'
+        ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+    return (
+      <FailureViewContainer>
+        <Image alt="failure view" src={imageUrl} failure />
+        <Heading failure theme={theme}>
+          Oops! Something Went Wrong
+        </Heading>
+        <Description failure theme={theme}>
+          We are having some trouble to complete your request. Please try again.
+        </Description>
+        <RetryButton onClick={this.getVideoItemDetails}>Retry</RetryButton>
+      </FailureViewContainer>
+    )
+  }
 
   renderLoadingView = () => (
     <LoaderContainer>
@@ -161,11 +186,11 @@ class VideoItemDetails extends Component {
     </LoaderContainer>
   )
 
-  renderSwitchView = theme => {
+  renderSwitchView = (theme, onSaveVideo) => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderSuccessView(theme)
+        return this.renderSuccessView(theme, onSaveVideo)
       case apiStatusConstants.failure:
         return this.renderFailureView(theme)
       case apiStatusConstants.inProgress:
@@ -179,14 +204,14 @@ class VideoItemDetails extends Component {
     return (
       <NxtContext.Consumer>
         {value => {
-          const {theme} = value
+          const {theme, onSaveVideo} = value
           return (
             <BgContainer theme={theme}>
               <Header />
               <BgContainer2>
                 <DesktopNavigation />
                 <HomeBannerContainer>
-                  {this.renderSwitchView(theme)}
+                  {this.renderSwitchView(theme, onSaveVideo)}
                 </HomeBannerContainer>
               </BgContainer2>
             </BgContainer>

@@ -18,16 +18,19 @@ export const BsDotElement = styled(BsDot)`
 export const BiLikeElement = styled(BiLike)`
   font-size: 24px;
   margin-right: 6px;
+  color: ${props => props.like === 'true' && '#3b82f6'};
 `
 
 export const BiDislikeElement = styled(BiDislike)`
   font-size: 24px;
   margin-right: 6px;
+  color: ${props => props.like === 'false' && '#3b82f6'};
 `
 
 export const BiListPlusElement = styled(BiListPlus)`
   font-size: 24px;
   margin-right: 6px;
+  color: ${props => props.save === 'true' && '#3b82f6'};
 `
 
 export const BgContainer = styled.div`
@@ -61,12 +64,13 @@ export const FailureViewContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
+  padding: 30px 15px 30px 15px;
+  text-align: center;
 `
 
 export const Image = styled.img`
-  width: 50px;
-  height: 50px;
+  width: ${props => (props.failure ? '300px' : '50px')};
+  height: ${props => (props.failure ? '280px' : '50px')};
   margin-right: 15px;
 `
 
@@ -74,21 +78,51 @@ export const Heading = styled.h1`
   font-family: 'Roboto';
   text-align: center;
   font-size: ${props => (props.small ? '14px' : '18px')};
+  font-size: ${props => props.failure && '22px'};
   font-weight: ${props => (props.small ? '400' : '500')};
   margin: 6px 0px 6px 0px;
   color: ${props => (props.theme === 'true' ? '#0f0f0f' : '#f9f9f9')};
-  text-align: left;
+  text-align: ${props => (props.failure ? 'center' : 'left')};
   line-height: 1.5;
+`
+
+export const SaveTextElement = styled.p`
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+  color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
+  color: ${props => props.save === 'true' && '#3b82f6'};
+  text-align: left;
+  margin: 6px 0px 6px 0px;
+`
+
+export const LikeTextElement = styled.p`
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+  color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
+  color: ${props => props.like === 'true' && '#3b82f6'};
+  text-align: left;
+  margin: 6px 0px 6px 0px;
+`
+
+export const DislikeTextElement = styled.p`
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+  color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
+  color: ${props => props.like === 'false' && '#3b82f6'};
+  text-align: left;
+  margin: 6px 0px 6px 0px;
 `
 
 export const Description = styled.p`
   font-family: 'Roboto';
-  text-align: center;
-  font-size: ${props => (props.big ? '18px' : '14px')};
-  font-weight: ${props => (props.bold ? '500' : 'normal')};
+  font-size: 14px;
+  font-size: ${props => props.failure && '20px'};
   margin: 6px 0px 6px 0px;
   color: ${props => (props.theme === 'true' ? '#475569' : '#94a3b8')};
-  text-align: left;
+  text-align: ${props => (props.failure ? 'center' : 'left')};
   display: ${props => (props.flex ? 'flex' : 'block')};
   line-height: 1.5;
 `
